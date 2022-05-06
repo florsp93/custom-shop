@@ -6,8 +6,8 @@ import { initializeApp } from "firebase/app";
 //AUTENTICACION
 import {
   getAuth,
+  signOut,
   signInWithPopup,
-  signInWithRedirect,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -40,6 +40,7 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
+console.log(auth);
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
@@ -82,6 +83,8 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
-
+  console.log(auth);
   return await signInWithEmailAndPassword(auth, email, password);
 };
+
+export const signOutUser = async () => await signOut(auth);

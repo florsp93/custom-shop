@@ -56,6 +56,7 @@ export const signInWithGooglePopup = () =>
 
 export const db = getFirestore();
 
+//ADD COLLECTION AND DOCUMENTS
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
@@ -69,23 +70,18 @@ export const addCollectionAndDocuments = async (
   });
 
   await batch.commit();
-  console.log("done");
 };
 
+//GET CATEGORIES AND DOCUMENTS
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
+//CREATE USER DOC FROM AUTH
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation
@@ -101,8 +97,6 @@ export const createUserDocumentFromAuth = async (
     const createdAt = new Date();
 
     try {
-      console.log(displayName, email);
-
       await setDoc(userDocRef, {
         displayName,
         email,
@@ -124,7 +118,6 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
-  console.log(auth);
   return await signInWithEmailAndPassword(auth, email, password);
 };
 

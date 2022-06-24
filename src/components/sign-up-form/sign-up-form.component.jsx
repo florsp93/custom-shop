@@ -27,7 +27,6 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(event.target);
 
     if (password != confirmPassword) {
       alert("Las contraseñas no coinciden");

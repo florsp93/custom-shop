@@ -10,11 +10,11 @@ import { setCategories } from "../../store/categories/category.action";
 
 const Shop = () => {
   const dispatch = useDispatch();
+  console.log("render/re-render shop");
 
   useEffect(() => {
     const getCategoriesMap = async () => {
       const categoriesArray = await getCategoriesAndDocuments("categories");
-      console.log(categoriesArray);
       dispatch(setCategories(categoriesArray));
     };
 

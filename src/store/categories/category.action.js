@@ -5,12 +5,12 @@ import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 
 export const fetchCategoriesStart = () => {
   console.log("fetch start");
-  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START);
+  return createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START);
 };
 
 export const fetchCategoriesSuccess = (categoriesArray) => {
   console.log("fetch success");
-  createAction(
+  return createAction(
     CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
     categoriesArray
   );
@@ -18,7 +18,7 @@ export const fetchCategoriesSuccess = (categoriesArray) => {
 
 export const fetchCategoriesFailed = (error) => {
   console.log("fetch error");
-  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
+  return createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
 };
 
 //THUNK ACTION > redux thunk recomienda declarar las thunk action con la terminacion ASYNC

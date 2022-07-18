@@ -6,11 +6,11 @@ import thunk from "redux-thunk";
 
 import { rootReducer } from "./root-reducer";
 
-//aca indicamos que debe conservar el estado de todos los valores menos de "user"
+//whitelist defines the parts of state that you do want to persist
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user"],
+  whitelist: ["cart"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
